@@ -17,6 +17,9 @@ export default {
         email: this.email
       }
       axios.post('http://localhost:3001/students/create', request)
+      this.name = ''
+      this.email = ''
+      alert('Student Created!')
     }
   }
 }
