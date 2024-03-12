@@ -30,7 +30,6 @@ export default {
     // },
     StudentDetails(id) {
       this.$router.push(`/${id}`)
-      console.log(id)
     },
   },
   mounted() {
@@ -47,7 +46,6 @@ export default {
     <p v-if="currentOption === 'studentName'">Show Student Name</p>
     <p v-else>Show Course</p> -->
 
-    <h2>Student Table</h2>
     <input
       @input="filteredStudents"
       v-model="search"
