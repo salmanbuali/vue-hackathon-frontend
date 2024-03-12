@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios'
 export default {
   name: 'CreateCourse',
   data: () => ({
@@ -11,8 +12,10 @@ export default {
     },
     handleSubmit(e) {
       e.preventDefault()
-      this.name = ''
-      alert('Course Created')
+      const request = {
+        name: this.name
+      }
+      axios.post('http://localhost:3001/courses/create', request)
     }
   }
 }

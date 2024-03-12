@@ -1,36 +1,36 @@
-import { createWebHistory, createRouter } from "vue-router"
+import { createWebHistory, createRouter } from 'vue-router'
 
-import HomePage from "./pages/HomePage.vue"
-import Enroll from "./pages/Enroll.vue"
-import CreateStudent from "./pages/CreateStudent.vue"
-import CreateCourse from "./pages/CreateCourse.vue"
+import HomePage from './pages/HomePage.vue'
+import Enroll from './pages/Enroll.vue'
+import CreateStudent from './pages/CreateStudent.vue'
+import CreateCourse from './pages/CreateCourse.vue'
 
 const routes = [
   {
-    path: "/",
+    path: '/',
     component: HomePage,
-    name: "HomePage",
+    name: 'HomePage'
   },
   {
-    path: "/enroll",
+    path: '/enroll',
     component: Enroll,
-    name: "enroll",
+    name: 'enroll'
   },
   {
-    path: "/CreateStudent",
+    path: '/CreateStudent',
     component: CreateStudent,
-    name: "AddStudent",
+    name: 'AddStudent'
   },
   {
-    path: "/CreateCourse",
+    path: '/CreateCourse',
     component: CreateCourse,
-    name: "addCourse",
-  },
+    name: 'addCourse'
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes,
+  routes
 })
 
 export default router
