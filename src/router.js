@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router"
 
-import HomePage from "./components/HomePage.vue"
+import HomePage from "./pages/HomePage.vue"
 import Enroll from "./pages/Enroll.vue"
 import CreateStudent from "./pages/CreateStudent.vue"
 import CreateCourse from "./pages/CreateCourse.vue"
