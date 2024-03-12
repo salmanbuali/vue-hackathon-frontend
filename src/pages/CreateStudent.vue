@@ -1,4 +1,5 @@
 <script>
+import axios from 'axios'
 export default {
   name: 'CreateStudent',
   data: () => ({
@@ -11,13 +12,11 @@ export default {
     },
     handleSubmit(e) {
       e.preventDefault()
-      this.name = ''
-      this.email = ''
       const request = {
         name: this.name,
         email: this.email
       }
-      // axios.post("",request)
+      axios.post('http://localhost:3001/students/create', request)
     }
   }
 }
