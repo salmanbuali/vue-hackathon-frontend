@@ -13,7 +13,7 @@ export default {
   <div id="app">
     <NavBar />
     <main>
-     
+      
       <!-- Router views go here -->
       <router-view header="Listings In Miami"></router-view>
     </main>
