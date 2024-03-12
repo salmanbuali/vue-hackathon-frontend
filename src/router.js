@@ -1,0 +1,36 @@
+import { createWebHistory, createRouter } from "vue-router"
+
+import HomePage from "./components/HomePage.vue"
+import Enroll from "./components/Enroll.vue"
+import CreateStudent from "./components/CreateStudent.vue"
+import CreateCourse from "./components/CreateCourse.vue"
+
+const routes = [
+  {
+    path: "/",
+    component: HomePage,
+    name: "HomePage",
+  },
+  {
+    path: "/enroll",
+    component: Enroll,
+    name: "enroll",
+  },
+  {
+    path: "/CreateStudent",
+    component: CreateStudent,
+    name: "AddStudent",
+  },
+  {
+    path: "/CreateCourse",
+    component: CreateCourse,
+    name: "addCourse",
+  },
+]
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+export default router
