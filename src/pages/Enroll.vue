@@ -49,29 +49,29 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <h1>Enroll Student</h1>
 
     <form v-on:submit="handleSubmit">
       <div class="select">
-        <label>Student: </label>
-        <select v-model="studentName">
+        <label for="studentSelect">Student: </label>
+        <select v-model="studentName" id="studentSelect">
           <option :value="student._id" v-for="student in this.allStudents">
             {{ student.name }}
           </option>
         </select>
       </div>
       <div class="select">
-        <label>Course: </label>
-        <select v-model="courseName">
+        <label for="courseSelect">Course: </label>
+        <select v-model="courseName" id="courseSelect">
           <option :value="course._id" v-for="course in this.allCourses">
             {{ course.name }}
           </option>
         </select>
       </div>
       <div class="select">
-        <label>Grade: </label>
-        <select v-model="grade">
+        <label for="gradeSelect">Grade: </label>
+        <select v-model="grade" id="gradeSelect">
           <option :value="grade._id" v-for="grade in this.allGrades">
             {{ grade.letter }}
           </option>
@@ -81,3 +81,38 @@ export default {
     </form>
   </div>
 </template>
+
+<style scoped>
+.select {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+select {
+  width: 15vw;
+  height: 3vh;
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+label {
+  font-size: large;
+}
+
+form {
+  width: 25vw;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin-top: 2vh;
+}
+</style>

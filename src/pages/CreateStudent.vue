@@ -51,3 +51,13 @@ export default {
     </form>
   </div>
 </template>
+
+<style>
+input {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+button {
+  margin-top: 2vh;
+}
+</style>
