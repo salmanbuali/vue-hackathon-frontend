@@ -25,11 +25,13 @@ export default {
     StudentDetails(id) {
       this.$router.push(`/${id}`)
     },
-    sortByGPADescending() {
+
+    async sortByGPADescending() {
       if (this.sorted === true) {
         this.sorted = false
 
-        this.getAllStudents()
+        await this.getAllStudents()
+        this.filteredStudentsData = this.students
       } else {
         this.sorted = true
         // this.sorted = true
@@ -60,11 +62,12 @@ export default {
         <tr>
           <th>ID</th>
           <th>Student Name</th>
-          <th @click="sortByGPADescending">GPA</th>
+          <th class="pointer" @click="sortByGPADescending">GPA</th>
         </tr>
       </thead>
       <tbody>
         <tr
+          class="pointer"
           v-if="this.search"
           v-for="(student, index) in this.filteredStudentsData"
           @click="StudentDetails(student.studentId)"
@@ -78,6 +81,7 @@ export default {
         </tr>
 
         <tr
+          class="pointer"
           v-else
           v-for="(student, index) in students"
           @click="StudentDetails(student.studentId)"
@@ -119,5 +123,12 @@ th {
 
 td {
   font-size: 1.25rem;
+}
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  background-color: rgb(67, 67, 67);
 }
 </style>
