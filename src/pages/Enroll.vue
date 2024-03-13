@@ -27,8 +27,9 @@ export default {
         course: this.courseName,
         grade: this.grade
       }
-
       axios.post('http://localhost:3001/students/enroll', request)
+      alert('Student Enrolled')
+      this.$router.push('/')
     },
     async getGrades() {
       const response = await axios.get('http://localhost:3001/grades')
