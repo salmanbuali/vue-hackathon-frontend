@@ -16,7 +16,7 @@ export default {
     </header>
     <main>
       <!-- Router views go here -->
-      <router-view header="Listings In Miami"></router-view>
+      <router-view></router-view>
     </main>
   </div>
 </template>
