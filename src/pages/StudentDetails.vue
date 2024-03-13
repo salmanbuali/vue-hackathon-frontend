@@ -1,10 +1,10 @@
 <script>
-import axios from "axios"
+import axios from 'axios'
 
 export default {
-  name: "StudentDetails",
+  name: 'StudentDetails',
   components: {
-    axios,
+    axios
   },
   data: () => ({
     student: {},
@@ -32,11 +32,11 @@ export default {
         student.course.name.toLowerCase().includes(searchTerm)
       )
       console.log(this.filteredCoursesData)
+      }
     },
-  },
   mounted() {
     this.getAllStudents()
-  },
+  }
 }
 </script>
 
@@ -46,13 +46,14 @@ export default {
     <br />
     ID: {{ this.student.studentId }}
     <br />
-    GPA: {{ this.student.gpa }}
+    GPA: <span v-if="student.gpa">{{ student.gpa.toFixed(2) }}</span>
     <br />
     <input
       @input="filteredCourses"
       v-model="search"
       placeholder="Search by course"
     />
+
   </div>
   <div>
     <table>

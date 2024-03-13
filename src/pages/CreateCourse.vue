@@ -4,20 +4,37 @@ export default {
   name: 'CreateCourse',
   data: () => ({
     name: '',
-    grade: null
+    allCourses: []
   }),
+  mounted: function () {
+    this.getCourses()
+  },
   methods: {
     handleChange(e) {
       this[e.target.name] = e.target.value
     },
     handleSubmit(e) {
+      let exists = false
       e.preventDefault()
       const request = {
         name: this.name
       }
-      axios.post('http://localhost:3001/courses/create', request)
-      alert('Course Created')
-      this.$router.push('/')
+      this.allCourses.forEach((el) => {
+        if (el.name === this.name) {
+          exists = true
+          alert('course exists')
+        }
+      })
+      if (!exists) {
+        axios.post('http://localhost:3001/courses/create', request)
+        alert('Course Created')
+        this.$router.push('/')
+      }
+    },
+    async getCourses() {
+      const response = await axios.get('http://localhost:3001/courses')
+      this.allCourses = response.data
+      console.log(this.allCourses)
     }
   }
 }
