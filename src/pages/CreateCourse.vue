@@ -16,8 +16,8 @@ export default {
         name: this.name
       }
       axios.post('http://localhost:3001/courses/create', request)
-      alert('course created!!!!!!')
-      this.name = ''
+      alert('Course Created')
+      this.$router.push('/')
     }
   }
 }
