@@ -1,13 +1,13 @@
 <script>
-import axios from "axios"
+import axios from 'axios'
 
 export default {
-  name: "HomePage",
+  name: 'HomePage',
   data: () => ({
     students: [],
     filteredStudentsData: [],
     // filteredCoursesData:[],
-    search: null,
+    search: null
     // currentOption: 'studentName',
   }),
   components: { axios },
@@ -30,17 +30,17 @@ export default {
     // },
     StudentDetails(id) {
       this.$router.push(`/${id}`)
-    },
+    }
   },
   mounted() {
     this.getAllStudents()
-  },
+  }
 }
 </script>
 
 <template>
-  <div>
-    <h4>Welcome</h4>
+  <div class="container">
+    <h2>Welcome to General Assembly Academy</h2>
 
     <!-- <button @click="toggleOption">Toggle</button>
     <p v-if="currentOption === 'studentName'">Show Student Name</p>
@@ -61,16 +61,19 @@ export default {
         </tr>
       </thead>
       <tbody>
-        <div v-if="this.search">
-          <tr
-            v-for="(student, index) in this.filteredStudentsData"
-            :key="index"
-          >
-            <td>{{ student.studentId }}</td>
-            <td>{{ student.name }}</td>
-            <td>{{ student.gpa }}</td>
-          </tr>
-          <!-- <tr
+        <tr
+          v-if="this.search"
+          v-for="(student, index) in this.filteredStudentsData"
+          :key="index"
+        >
+          <td>{{ student.studentId }}</td>
+          <td>{{ student.name }}</td>
+          <td>
+            <span v-if="student.gpa">{{ student.gpa.toFixed(2) }}</span>
+            <span v-if="!student.gpa">N/A</span>
+          </td>
+        </tr>
+        <!-- <tr
             v-for="(student, index) in this.filteredStudentsData"
             :key="index"
             v-if="currentOption=='course'"
@@ -79,19 +82,48 @@ export default {
             <td>{{ student.name }}</td>
             <td>{{ student.gpa }}</td>
           </tr> -->
-        </div>
-        <div
+
+        <tr
           v-else
           v-for="(student, index) in students"
           @click="StudentDetails(student.studentId)"
         >
-          <tr :key="index">
-            <td>{{ student.studentId }}</td>
-            <td>{{ student.name }}</td>
-            <td>{{ student.gpa }}</td>
-          </tr>
-        </div>
+          <td>{{ student.studentId }}</td>
+          <td>{{ student.name }}</td>
+          <td>
+            <span v-if="student.gpa">{{ student.gpa.toFixed(2) }}</span>
+
+            <span v-if="!student.gpa">N/A</span>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
 </template>
+
+<style scoped>
+td,
+th {
+  border: 0.5px solid white;
+  padding: 1vw;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  width: 60vw;
+  margin-top: 2vh;
+}
+
+th {
+  font-size: 1.75rem;
+}
+
+td {
+  font-size: 1.25rem;
+}
+</style>

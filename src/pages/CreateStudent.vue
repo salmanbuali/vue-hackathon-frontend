@@ -20,6 +20,7 @@ export default {
       this.name = ''
       this.email = ''
       alert('Student Created!')
+      this.$router.push('/')
     }
   }
 }
