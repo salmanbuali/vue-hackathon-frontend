@@ -1,24 +1,39 @@
 <script>
-import axios from 'axios'
+import axios from "axios"
 
 export default {
   name: "HomePage",
   data: () => ({
-    students: [
-      { name: "John Doe", gpa: 3.0, id: 2024001 },
-      { name: "Jane Smith", gpa: 4.0, id: 2024002 },
-    ],
+    students: [],
     filteredStudentsData: [],
+    // filteredCoursesData:[],
     search: null,
+    // currentOption: 'studentName',
   }),
+  components: { axios },
   methods: {
+    async getAllStudents() {
+      const response = await axios.get(`http://localhost:3001/students`)
+      this.students = response.data
+    },
     filteredStudents() {
-      console.log("search")
       const searchTerm = this.search.toLowerCase()
       this.filteredStudentsData = this.students.filter((student) =>
         student.name.toLowerCase().includes(searchTerm)
       )
     },
+    // filteredCourses(){
+
+    // },
+    // toggleOption() {
+    //   this.currentOption = this.currentOption === 'studentName' ? 'course' : 'studentName';
+    // },
+    StudentDetails(id) {
+      this.$router.push(`/${id}`)
+    },
+  },
+  mounted() {
+    this.getAllStudents()
   },
 }
 </script>
@@ -27,13 +42,16 @@ export default {
   <div>
     <h4>Welcome</h4>
 
-    <h2>Student Table</h2>
+    <!-- <button @click="toggleOption">Toggle</button>
+    <p v-if="currentOption === 'studentName'">Show Student Name</p>
+    <p v-else>Show Course</p> -->
+
     <input
       @input="filteredStudents"
       v-model="search"
       placeholder="Search by name"
     />
-    
+
     <table>
       <thead>
         <tr>
@@ -44,15 +62,31 @@ export default {
       </thead>
       <tbody>
         <div v-if="this.search">
-          <tr v-for="(student, index) in this.filteredStudentsData" :key="index">
-            <td>{{ student.id }}</td>
+          <tr
+            v-for="(student, index) in this.filteredStudentsData"
+            :key="index"
+          >
+            <td>{{ student.studentId }}</td>
             <td>{{ student.name }}</td>
             <td>{{ student.gpa }}</td>
           </tr>
-        </div>
-        <div v-else>
-          <tr v-for="(student, index) in students" :key="index">
+          <!-- <tr
+            v-for="(student, index) in this.filteredStudentsData"
+            :key="index"
+            v-if="currentOption=='course'"
+          >
             <td>{{ student.id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.gpa }}</td>
+          </tr> -->
+        </div>
+        <div
+          v-else
+          v-for="(student, index) in students"
+          @click="StudentDetails(student.studentId)"
+        >
+          <tr :key="index">
+            <td>{{ student.studentId }}</td>
             <td>{{ student.name }}</td>
             <td>{{ student.gpa }}</td>
           </tr>
