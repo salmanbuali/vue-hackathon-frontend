@@ -1,20 +1,20 @@
 <script>
-import axios from 'axios'
+import axios from "axios"
 
 export default {
-  name: 'HomePage',
+  name: "HomePage",
   data: () => ({
     students: [],
     filteredStudentsData: [],
     search: null,
-
+    sorted: false,
   }),
   components: { axios },
   methods: {
     async getAllStudents() {
       const response = await axios.get(`http://localhost:3001/students`)
       this.students = response.data
-      console.log('before order',this.students);
+      console.log("before order", this.students)
     },
     filteredStudents() {
       const searchTerm = this.search.toLowerCase()
@@ -26,14 +26,22 @@ export default {
       this.$router.push(`/${id}`)
     },
     sortByGPADescending() {
-      this.students.sort((a, b) => b.gpa - a.gpa); // Sorting in descending order by GPA
-      console.log('After order',this.students);
-      this.filteredStudentsData.sort((a, b) => b.gpa - a.gpa);
+      if (this.sorted === true) {
+        this.sorted = false
+
+        this.getAllStudents()
+      } else {
+        this.sorted = true
+        // this.sorted = true
+        this.students.sort((a, b) => b.gpa - a.gpa) // Sorting in descending order by GPA
+        console.log("After order", this.students)
+        this.filteredStudentsData.sort((a, b) => b.gpa - a.gpa)
+      }
     },
   },
   mounted() {
     this.getAllStudents()
-  }
+  },
 }
 </script>
 
