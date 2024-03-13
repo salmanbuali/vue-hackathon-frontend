@@ -6,15 +6,15 @@ export default {
   data: () => ({
     students: [],
     filteredStudentsData: [],
-    // filteredCoursesData:[],
-    search: null
-    // currentOption: 'studentName',
+    search: null,
+
   }),
   components: { axios },
   methods: {
     async getAllStudents() {
       const response = await axios.get(`http://localhost:3001/students`)
       this.students = response.data
+      console.log('before order',this.students);
     },
     filteredStudents() {
       const searchTerm = this.search.toLowerCase()
@@ -22,15 +22,14 @@ export default {
         student.name.toLowerCase().includes(searchTerm)
       )
     },
-    // filteredCourses(){
-
-    // },
-    // toggleOption() {
-    //   this.currentOption = this.currentOption === 'studentName' ? 'course' : 'studentName';
-    // },
     StudentDetails(id) {
       this.$router.push(`/${id}`)
-    }
+    },
+    sortByGPADescending() {
+      this.students.sort((a, b) => b.gpa - a.gpa); // Sorting in descending order by GPA
+      console.log('After order',this.students);
+      this.filteredStudentsData.sort((a, b) => b.gpa - a.gpa);
+    },
   },
   mounted() {
     this.getAllStudents()
@@ -41,10 +40,6 @@ export default {
 <template>
   <div class="container">
     <h2>Welcome to General Assembly Academy</h2>
-
-    <!-- <button @click="toggleOption">Toggle</button>
-    <p v-if="currentOption === 'studentName'">Show Student Name</p>
-    <p v-else>Show Course</p> -->
 
     <input
       @input="filteredStudents"
@@ -57,14 +52,14 @@ export default {
         <tr>
           <th>ID</th>
           <th>Student Name</th>
-          <th>GPA</th>
+          <th @click="sortByGPADescending">GPA</th>
         </tr>
       </thead>
       <tbody>
         <tr
           v-if="this.search"
           v-for="(student, index) in this.filteredStudentsData"
-          :key="index"
+          @click="StudentDetails(student.studentId)"
         >
           <td>{{ student.studentId }}</td>
           <td>{{ student.name }}</td>
@@ -73,15 +68,6 @@ export default {
             <span v-if="!student.gpa">N/A</span>
           </td>
         </tr>
-        <!-- <tr
-            v-for="(student, index) in this.filteredStudentsData"
-            :key="index"
-            v-if="currentOption=='course'"
-          >
-            <td>{{ student.id }}</td>
-            <td>{{ student.name }}</td>
-            <td>{{ student.gpa }}</td>
-          </tr> -->
 
         <tr
           v-else
