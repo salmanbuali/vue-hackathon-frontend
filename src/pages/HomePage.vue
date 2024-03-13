@@ -105,7 +105,7 @@ export default {
 td,
 th {
   border: 0.5px solid white;
-  padding: 1vw;
+  padding: 0.5vw;
 }
 
 .container {
