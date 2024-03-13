@@ -64,7 +64,7 @@ export default {
         <tr
           v-if="this.search"
           v-for="(student, index) in this.filteredStudentsData"
-          :key="index"
+          @click="StudentDetails(student.studentId)"
         >
           <td>{{ student.studentId }}</td>
           <td>{{ student.name }}</td>
