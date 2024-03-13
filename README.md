@@ -15,7 +15,7 @@ Following that when the user goes to the homepage (or when they are redirected w
 
 ## ERD
 
-![Img](./image.png)
+<img src="./image.png" alt="Description of the image" width="400" height="300">
 
 
 ## Tools
