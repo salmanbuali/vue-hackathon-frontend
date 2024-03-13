@@ -1,13 +1,13 @@
 <script>
-import axios from "axios"
+import axios from 'axios'
 
 export default {
-  name: "StudentDetails",
+  name: 'StudentDetails',
   components: {
-    axios,
+    axios
   },
   data: () => ({
-    student: {},
+    student: {}
   }),
   methods: {
     async getAllStudents() {
@@ -22,11 +22,11 @@ export default {
       //   (e) => e.studentId == parseInt(this.$route.params.student_id)
       // )[0].name
       // )
-    },
+    }
   },
   mounted() {
     this.getAllStudents()
-  },
+  }
 }
 </script>
 
@@ -36,7 +36,7 @@ export default {
     <br />
     ID: {{ this.student.studentId }}
     <br />
-    GPA: {{ this.student.gpa }}
+    GPA: <span v-if="student.gpa">{{ student.gpa.toFixed(2) }}</span>
   </div>
   <div>
     <table>
@@ -56,7 +56,6 @@ export default {
             {{ e.grade.letter }}
           </td>
         </tr>
-       
       </tbody>
     </table>
   </div>
