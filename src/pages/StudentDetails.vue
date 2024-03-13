@@ -49,6 +49,8 @@ export default {
     GPA: <span v-if="this.student.gpa">{{ student.gpa.toFixed(2) }}</span>
     <span v-if="!student.gpa">N/A</span>
     <br />
+    Email: {{ this.student.email }}
+    <br>
     <input
       @input="filteredCourses"
       v-model="search"
